@@ -132,5 +132,59 @@
             <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Support</a></p>
         </footer>
     </div>
+    // Fix for the start button functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
+    const consentCheckbox = document.getElementById('consent-checkbox');
+    const startButton = document.getElementById('start-assessment');
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const questionContainer = document.getElementById('question-container');
+
+    // Make sure the elements exist
+    console.log("Consent checkbox found:", !!consentCheckbox);
+    console.log("Start button found:", !!startButton);
+    console.log("Welcome screen found:", !!welcomeScreen);
+    console.log("Question container found:", !!questionContainer);
+
+    // Consent checkbox event listener
+    consentCheckbox.addEventListener('change', function() {
+        console.log("Checkbox changed. Checked:", this.checked);
+        startButton.disabled = !this.checked;
+    });
+
+    // Start button event listener
+    startButton.addEventListener('click', function() {
+        console.log("Start button clicked. Checkbox checked:", consentCheckbox.checked);
+        if (consentCheckbox.checked) {
+            console.log("Starting assessment...");
+            welcomeScreen.classList.remove('active');
+            questionContainer.classList.add('active');
+            // Check if startAssessment function exists
+            if (typeof startAssessment === 'function') {
+                startAssessment();
+            } else {
+                console.error("startAssessment function not found");
+                // Fallback to at least show the first question
+                if (questions && questions.length > 0) {
+                    loadQuestion(0);
+                }
+            }
+        }
+    });
+
+    // Direct fix: add a simple click handler that forces the transition
+    document.getElementById('start-assessment').onclick = function() {
+        if (consentCheckbox.checked) {
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('question-container').style.display = 'block';
+            
+            // Try to update the question container directly
+            const questionText = document.getElementById('question-text');
+            if (questionText && questions && questions.length > 0) {
+                questionText.textContent = questions[0].text;
+            }
+        }
+    };
+});
 </body>
 </html>
