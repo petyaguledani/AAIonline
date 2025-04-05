@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Attachment History Assessment (DAHA)</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="daha.js" defer></script>
+</head>
+<body>
+    <div class="assessment-container">
+        <header>
+            <h1>Digital Attachment History Assessment (DAHA)</h1>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </header>
+        
+        <main id="assessment-main">
+            <!-- Welcome screen -->
+            <section id="welcome-screen" class="assessment-section active">
+                <h2>Welcome to the Digital Attachment History Assessment</h2>
+                <p>This assessment helps you explore how your early relationships may influence your current relationship patterns.</p>
+                <p>You'll be guided through a series of questions about your childhood experiences and early relationships. You can take your time with each question, and the system may ask you follow-up questions based on your responses.</p>
+                <div class="info-box">
+                    <h3>Important Information</h3>
+                    <ul>
+                        <li>This assessment takes approximately 45-60 minutes to complete.</li>
+                        <li>You can pause and resume at any time by using the save button.</li>
+                        <li>Your responses are encrypted and kept private.</li>
+                        <li>Some questions may bring up emotional memories - take breaks as needed.</li>
+                    </ul>
+                </div>
+                <div class="consent-form">
+                    <h3>Consent</h3>
+                    <p>By continuing, you acknowledge that:</p>
+                    <ul>
+                        <li>This assessment is for personal insight and is not a diagnostic tool.</li>
+                        <li>Your data will be stored securely and used only for the purposes you consent to.</li>
+                        <li>You can request to delete your data at any time.</li>
+                    </ul>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="consent-checkbox" required>
+                        <label for="consent-checkbox">I understand and consent to proceed</label>
+                    </div>
+                </div>
+                <button id="start-assessment" class="primary-button" disabled>Begin Assessment</button>
+            </section>
+
+            <!-- Question template - will be populated by JavaScript -->
+            <section id="question-container" class="assessment-section">
+                <div id="question-header">
+                    <h2 id="section-title">Early Family Context</h2>
+                    <p id="question-number">Question 1 of 26</p>
+                </div>
+                
+                <div id="question-content">
+                    <h3 id="question-text">Question text will appear here</h3>
+                    <div id="response-container">
+                        <!-- Will be dynamically filled based on question type -->
+                    </div>
+                    <div id="followup-container" class="hidden">
+                        <!-- Will contain follow-up questions -->
+                    </div>
+                </div>
+                
+                <div id="question-controls">
+                    <div class="time-indicator">
+                        <span>Time on question: </span>
+                        <span id="time-counter">0:00</span>
+                    </div>
+                    <div class="button-container">
+                        <button id="previous-button" class="secondary-button">Previous</button>
+                        <button id="save-progress" class="secondary-button">Save Progress</button>
+                        <button id="next-button" class="primary-button">Next</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Completion screen -->
+            <section id="completion-screen" class="assessment-section">
+                <h2>Assessment Complete</h2>
+                <p>Thank you for completing the Digital Attachment History Assessment.</p>
+                <div class="completion-options">
+                    <button id="download-responses" class="secondary-button">Download Your Responses</button>
+                    <button id="view-summary" class="primary-button">View Summary Insights</button>
+                </div>
+                <div class="resources-section">
+                    <h3>Additional Resources</h3>
+                    <p>Understanding our attachment patterns can sometimes bring up emotions or questions. Here are some resources that may be helpful:</p>
+                    <ul>
+                        <li><a href="#">Understanding Attachment Styles</a></li>
+                        <li><a href="#">Finding a Therapist Specializing in Attachment</a></li>
+                        <li><a href="#">Books on Healing Attachment Wounds</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Summary results screen -->
+            <section id="results-screen" class="assessment-section">
+                <h2>Your Attachment Patterns</h2>
+                <p class="disclaimer">This summary is based on your responses and provides general insights, not a clinical diagnosis.</p>
+                
+                <div id="results-container">
+                    <!-- Will be dynamically populated -->
+                </div>
+                
+                <div class="button-container">
+                    <button id="back-to-completion" class="secondary-button">Back</button>
+                    <button id="download-report" class="primary-button">Download Full Report</button>
+                </div>
+            </section>
+        </main>
+
+        <div id="modal-container" class="hidden">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 id="modal-title">Attention Required</h3>
+                    <button id="close-modal" class="close-button">&times;</button>
+                </div>
+                <div id="modal-content">
+                    <!-- Dynamically filled -->
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-primary-button" class="primary-button">Continue</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Digital Attachment History Assessment (DAHA) &copy; 2025</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Support</a></p>
+        </footer>
+    </div>
+</body>
+</html>
